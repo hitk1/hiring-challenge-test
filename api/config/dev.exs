@@ -5,7 +5,7 @@ config :api, Api.Repo,
   username: "postgres",
   password: "rpi1234",
   database: "hiring_challenge",
-  hostname: "172.29.57.157",
+  hostname: "172.29.56.254",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -13,7 +13,7 @@ config :api, Api.Repo,
 # debugging and code reloading.
 #
 # The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
+# watchers to your application. For example, we use it'
 # with webpack to recompile .js and .css sources.
 config :api, ApiWeb.Endpoint,
   http: [port: 4000],

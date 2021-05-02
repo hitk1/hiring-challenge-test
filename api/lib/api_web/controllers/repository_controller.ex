@@ -3,11 +3,13 @@ defmodule ApiWeb.RepositoryController do
 
   alias Api.Repositories.Services.GetRepos
 
-  def get_repos(conn, params) do
+  action_fallback ApiWeb.FallbackController
+
+  def get_repos(conn, _params) do
     with {:ok, data} <- GetRepos.call() do
       conn
       |> put_status(:ok)
-      |> render("repos.json", %{data: data})
+      |> render("repos.json", repos: data)
     end
   end
 end

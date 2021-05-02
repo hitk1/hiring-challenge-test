@@ -21,7 +21,7 @@ defmodule Api.Repositories.Services.GetRepos do
               ]
   end
 
-  def call() do
+  def call do
     %{repos: repos} = %State{}
 
     tasks =
@@ -37,21 +37,34 @@ defmodule Api.Repositories.Services.GetRepos do
 
     Enum.map(tasks, &Task.await/1)
 
-    with {:ok, data} <- getRepoFromDB() do
+    with {:ok, data} <- repo_from_db() do
       {:ok, data}
     else
-      _ -> {:error, ""}
+      reason -> {:error, reason}
     end
   end
 
-  defp getRepoFromDB() do
-    # query = from(repo in RepoSchema)
+  defp repo_from_db do
+    query =
+      from repo in RepoSchema,
+        select: {
+          repo.id,
+          repo.name,
+          repo.avatar
+        }
 
-    result = Repo.all(RepoSchema)
-    IO.inspect(Enum.at(result, 0))
+    result = Repo.all(query)
 
     if length(result) > 0 do
-      {:ok, result}
+      formated_data =
+        result
+        |> Enum.map(fn item ->
+          {id, avatar_url, name} = item
+
+          %{id: id, avatar_url: avatar_url, name: name}
+        end)
+
+      {:ok, formated_data}
     else
       {:error, "Data not found!"}
     end
