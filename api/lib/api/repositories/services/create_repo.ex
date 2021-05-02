@@ -43,7 +43,7 @@ defmodule Api.Repositories.Services.CreateRepo do
   defp execute(repoChangeset) do
     case Repo.insert(repoChangeset) do
       {:ok, result} -> {:ok, result}
-      {:error, reason} -> Logger.info("had to do something")
+      {:error, reason} -> Logger.info("have to do something")
     end
   end
 end
