@@ -31,16 +31,18 @@ defmodule Api.Repositories.Services.GetRepos do
           with {:ok, data} <- RequestRepo.call(item),
                {:ok, _} <- CreateRepo.call(data) do
             Logger.info("Repo created successfully!")
+          else
+            {:error, reason} -> Logger.info(reason)
           end
         end)
       end)
 
     Enum.map(tasks, &Task.await/1)
 
-    with {:ok, data} <- repo_from_db() do
+    with {:ok, data} <- repo_from_db do
       {:ok, data}
     else
-      reason -> {:error, reason}
+      reason -> reason
     end
   end
 
@@ -66,7 +68,7 @@ defmodule Api.Repositories.Services.GetRepos do
 
       {:ok, formated_data}
     else
-      {:error, "Data not found!"}
+      {:error, "Something went wrong"}
     end
   end
 end
