@@ -9,6 +9,7 @@ defmodule ApiWeb.Router do
     pipe_through :api
 
     get "/repos", RepositoryController, :get_repos
+    get "/repos/:id", RepositoryController, :get_repo_by_id
   end
 
   # Enables LiveDashboard only for development

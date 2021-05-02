@@ -5,4 +5,10 @@ defmodule ApiWeb.RepositoryView do
       data: data
     }
   end
+
+  def render("single.json", %{repo: repo}) do
+    %{
+      data: repo
+    }
+  end
 end
