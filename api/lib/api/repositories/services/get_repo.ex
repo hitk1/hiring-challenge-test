@@ -13,11 +13,11 @@ defmodule Api.Repositories.Services.GetRepos do
           }
 
     defstruct repos: [
-                "/facebook/react-native",
-                "/facebook/react",
-                "/Automattic/mongoose",
-                "/prisma/prisma",
-                "/Nozbe/WatermelonDB"
+                "/facebook/react-native"
+                # "/facebook/react",
+                # "/Automattic/mongoose",
+                # "/prisma/prisma",
+                # "/Nozbe/WatermelonDB"
               ]
   end
 
@@ -39,10 +39,10 @@ defmodule Api.Repositories.Services.GetRepos do
 
     Enum.map(tasks, &Task.await/1)
 
-    with {:ok, data} <- repo_from_db do
+    with {:ok, data} <- repo_from_db() do
       {:ok, data}
     else
-      reason -> reason
+      {:error, reason} -> Logger.info(reason)
     end
   end
 
@@ -55,6 +55,7 @@ defmodule Api.Repositories.Services.GetRepos do
           repo.avatar
         }
 
+    raise "foda-se"
     result = Repo.all(query)
 
     if length(result) > 0 do

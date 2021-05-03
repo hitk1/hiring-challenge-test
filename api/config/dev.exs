@@ -5,7 +5,7 @@ config :api, Api.Repo,
   username: "postgres",
   password: "rpi1234",
   database: "hiring_challenge",
-  hostname: "172.29.75.194",
+  hostname: "172.29.65.147",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

@@ -7,9 +7,9 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :api, Api.Repo,
   username: "postgres",
-  password: "postgres",
-  database: "api_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  password: "rpi1234",
+  database: "api_test",
+  hostname: "172.29.65.147",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

@@ -10,14 +10,18 @@ defmodule Api.Repositories.Services.RequestRepo do
         |> HTTPoison.get!()
 
       data = Poison.decode!(response.body)
-      {:ok, data}
+
+      case data do
+        %{"message" => message} -> raise message
+        %{"organization" => _} -> {:ok, data}
+      end
     rescue
       error in RuntimeError ->
         %{message: message} = error
         {:error, message}
 
       error in MatchError ->
-        %{"message" => message} = error
+        %{term: %{"message" => message}} = error
         {:error, message}
 
       _ ->
