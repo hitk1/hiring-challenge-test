@@ -1,0 +1,77 @@
+.card-container {
+    height: 6rem;
+
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.tag {
+    height: 1.5rem;
+
+    padding: 0 1rem;
+
+    border: 1px solid #588dff;
+    border-radius: 50px;
+    background: rgba(88, 166, 255, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: .8rem !important;
+}
+
+.tag-text{
+    color: #588dff;
+    font-weight: 600;
+}
+
+.repo-name {
+    color: #588dff;
+    font-weight: 600;
+    font-size: 18px;
+    
+    margin-left: .8rem !important;
+}
+
+.repo-icon {
+    width: 75px;
+    height: 75px;
+}
+
+.repo-description {
+    padding: 0.2rem .8rem;
+
+    font-size: 15px;
+    color: #666;
+}
+
+.go-to-details {
+    height: 60px;
+    border: 0;
+    border-radius: 6px;
+ 
+    background: #fff;
+    margin-right: 0;
+    padding: .3rem .4rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: background .2s;
+}
+
+.go-to-details:hover {
+    background: rgba(88, 166, 255, 0.2);
+}
+
+.go-to-details > p {
+    color: #588dff;
+    font-size: 14px;
+}
+
+p {
+    margin: 0!important;
+}

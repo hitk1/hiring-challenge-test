@@ -8,6 +8,7 @@ defmodule Api.Repositories.Infra.Database.Schema do
   @required_params [
     :name,
     :full_name,
+    :language,
     :owner,
     :avatar,
     :owner_page,
@@ -22,6 +23,7 @@ defmodule Api.Repositories.Infra.Database.Schema do
   schema "repos" do
     field(:name, :string)
     field(:full_name, :string)
+    field(:language, :string)
     field(:owner, :string)
     field(:avatar, :string)
     field(:owner_page, :string)

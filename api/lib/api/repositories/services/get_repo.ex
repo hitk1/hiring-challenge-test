@@ -42,34 +42,51 @@ defmodule Api.Repositories.Services.GetRepos do
     with {:ok, data} <- repo_from_db() do
       {:ok, data}
     else
-      {:error, reason} -> Logger.info(reason)
+      {:error, reason} -> {:error, reason}
     end
   end
 
   defp repo_from_db do
-    query =
-      from repo in RepoSchema,
-        select: {
-          repo.id,
-          repo.name,
-          repo.avatar
-        }
+    try do
+      query =
+        from(repo in RepoSchema,
+          select: {
+            repo.id,
+            repo.name,
+            repo.avatar,
+            repo.repo_description,
+            repo.language
+          }
+        )
 
-    raise "foda-se"
-    result = Repo.all(query)
+      result = Repo.all(query)
 
-    if length(result) > 0 do
-      formated_data =
-        result
-        |> Enum.map(fn item ->
-          {id, avatar_url, name} = item
+      if length(result) > 0 do
+        formated_data =
+          result
+          |> Enum.map(fn item ->
+            {id, name, avatar, repo_description, language} = item
 
-          %{id: id, avatar_url: avatar_url, name: name}
-        end)
+            %{
+              id: id,
+              avatar_url: avatar,
+              name: name,
+              description: repo_description,
+              language: language
+            }
+          end)
 
-      {:ok, formated_data}
-    else
-      {:error, "Something went wrong"}
+        {:ok, formated_data}
+      else
+        {:error, "Something went wrong"}
+      end
+    rescue
+      error in RuntimeError ->
+        %{message: message} = error
+        {:error, message}
+
+      _ ->
+        {:error, "Something went wrong"}
     end
   end
 end

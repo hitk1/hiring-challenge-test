@@ -1,0 +1,27 @@
+.owner-logo {
+    height: 200px;
+}
+
+.get-started-link {
+    transition: background .2s;
+    transition: color .2s;
+}
+
+.get-started-link:hover {
+    background: rgb(139, 173, 247);
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.repo-description-container {
+    margin: 2rem 0 0 2rem;
+}
+
+.repo-description-container p {
+    padding-top: .5rem;
+}
+
+.counter-container {
+    margin-top: 1rem;
+}

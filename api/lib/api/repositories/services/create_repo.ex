@@ -20,12 +20,14 @@ defmodule Api.Repositories.Services.CreateRepo do
         "created_at" => created_at,
         "stargazers_count" => stars_count,
         "watchers_count" => watchers_count,
-        "forks_count" => forks_count
+        "forks_count" => forks_count,
+        "language" => language
       } = data
 
       %{
         name: name,
         full_name: full_name,
+        language: language,
         owner: owner,
         avatar: avatar,
         owner_page: owner_page,

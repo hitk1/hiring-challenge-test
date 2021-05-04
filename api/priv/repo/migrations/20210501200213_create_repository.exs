@@ -5,6 +5,7 @@ defmodule Api.Repo.Migrations.CreateRepository do
     create table(:repos) do
       add(:name, :string)
       add(:full_name, :string)
+      add(:language, :string)
       add(:owner, :string)
       add(:avatar, :string)
       add(:owner_page, :string)
