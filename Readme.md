@@ -5,22 +5,22 @@ O Projet foi desenvolvido utilizando Elixir-Phoenix na API e para o frontend, Re
     api: Elixir-Phoenix
     front: ReactJS
 
-## Setup
+# Setup
 
-### Database
+## Database
 
-O banco de dados utilizado foi o postgres e para configurá-lo há um arquivos ```docker-compose.yml``` na raiz do projeto, responsável por inicializar um container com o mesmo na versão ```11-alpine```
+O banco de dados utilizado foi o postgres e para configurá-lo há um arquivo ```docker-compose.yml``` na raiz do projeto, responsável por inicializar um container com o mesmo na versão ```11-alpine```
 
 Lembrando que é possível alterar as configurações default para conexão ao banco de dados no arquivo ```docker-compose.yml```
 
     services:
         database:
             environment: 
-            POSTGRES_USER: postgres //default
-            POSTGRES_PASSWORD: rpi1234 //default
+              POSTGRES_USER: postgres //default
+              POSTGRES_PASSWORD: rpi1234 //default
 
 ```bash
-$docker-compose up -d
+$ docker-compose up -d
 ```
 
 ### API
@@ -55,15 +55,18 @@ Execute os comandos abaixo para inicializar o Phoenix:
 
 ```bash
 #Compilier das dependecias
-$mix deps.get
-$mix deps.compile
+$ mix deps.get
+$ mix deps.compile
 
 # Setup para criação do banco de dados
-$mix ecto.create
-$mix ecto.migrate
+$ mix ecto.create
+$ mix ecto.migrate
+
+# Executar testes unitários
+$ mix test
 
 # Inicialização do serviço
-$mix phx.server
+$ mix phx.server
 ```
 
 ###Frontend
@@ -77,10 +80,18 @@ export default Axios.create({
 })
 ```
 
+Instalação das dependências:
+
+```bash 
+$ npm install
+# -- Ou se estiver usando yarn
+$ yarn
+```
+
 Inicialização do mesmo:
 
 ```bash
-$npm run start
+$ npm run start
 # -- Ou se estiver usando yarn
-$yarn start
+$ yarn start
 ```

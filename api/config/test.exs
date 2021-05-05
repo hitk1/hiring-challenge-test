@@ -9,7 +9,7 @@ config :api, Api.Repo,
   username: "postgres",
   password: "rpi1234",
   database: "hiring_challenge_test",
-  hostname: "172.18.173.104",
+  hostname: "127.0.0.1",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
