@@ -8,8 +8,8 @@ use Mix.Config
 config :api, Api.Repo,
   username: "postgres",
   password: "rpi1234",
-  database: "api_test",
-  hostname: "172.29.65.147",
+  database: "hiring_challenge_test",
+  hostname: "172.18.173.104",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
