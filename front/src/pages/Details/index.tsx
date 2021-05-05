@@ -35,24 +35,35 @@ const Details: React.FC = () => {
                     ? (
                         <div>
                             <div className="d-flex flex-row align-items-start justify-content-between">
-                                <div className="d-flex flex-row align-items-start w-100">
-                                    <img src={single.avatar} alt="repo_img" className="owner-logo" />
-                                    <div className="d-flex flex-column repo-description-container">
-                                        <h3><a target="_blank" href={single.repo_page}>{single.full_name}</a></h3>
+                                <div className="d-flex flex-row align-items-start w-75">
+                                    <a target="_blank" href={single.owner_page}>
+                                        <img src={single.avatar} alt="repo_img" className="owner-logo" />
+                                    </a>
+                                    <div className="d-flex flex-column repo-description-container w-100">
+                                        <div className="d-flex flex-row align-items-center">
+                                            <h4>
+                                                <a target="_blank" href={single.repo_page}>{single.full_name}</a>
+                                            </h4>
+                                            <div className="tag">
+                                                <p className="tag-text">{single.language}</p>
+                                            </div>
+                                        </div>
                                         <p>{single.repo_description}</p>
-                                        <div className="counter-container d-flex flex-row align-items-center justify-content-between w-75">
-                                            <span className="d-flex flex-row align-items-center">
-                                                <FaStar />
-                                                <p>{single.stars_count}</p>
-                                            </span>
-                                            <span className="d-flex flex-row align-items-center">
-                                                <CgGitFork />
-                                                <p>{single.forks_count}</p>
-                                            </span>
-                                            <span className="d-flex flex-row align-items-center">
-                                                <FaEye />
-                                                <p>{single.watchers_count}</p>
-                                            </span>
+                                        <div className="counter-container d-flex flex-row align-items-center justify-content-between w-100">
+                                            <div className="d-flex flex-row align-items-center justify-content-around w-50">
+                                                <div className="d-flex flex-row align-items-center justify-content-center">
+                                                    <FaStar />
+                                                    <p>{single.stars_count}</p>
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center justify-content-center">
+                                                    <CgGitFork />
+                                                    <p>{single.forks_count}</p>
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center justify-content-center">
+                                                    <FaEye />
+                                                    <p>{single.watchers_count}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -60,11 +71,10 @@ const Details: React.FC = () => {
                                     single.repo_homepage !== ''
                                         ? (
                                             <div className="h-50 d-flex flex-row align-items-center mr-4 mt-4">
-                                                <FaStar />
                                                 <a
                                                     target="_blank"
                                                     href={single.repo_homepage}
-                                                    className="mx-2 get-started-link"
+                                                    className="mx-2 px-2 get-started-link"
                                                 >
                                                     Get started!
                                                         </a>
@@ -72,9 +82,6 @@ const Details: React.FC = () => {
                                         )
                                         : null
                                 }
-                            </div>
-                            <div>
-                                <p>Owner: <a target="_blank" href={single.owner_page}>{single.owner}</a></p>
                             </div>
                         </div>
                     )

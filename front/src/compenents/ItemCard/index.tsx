@@ -13,18 +13,20 @@ const ItemCard: React.FC<IProps> = ({ item }) => {
     }, [])
 
     return (
-        <div className="card-container d-flex flex-row align-items-center px-2">
-            <img src={item.avatar_url} alt="ower_img" className="repo-icon" />
-            <div className="d-flex flex-column align-self-start mt-3">
-                <div className="d-flex flex-row align-items-center">
-                    <p className="repo-name">{item.name}</p>
-                    <div className="tag">
-                        <p
-                            className="tag-text"
-                        >{item.language}</p>
+        <div className="card-container d-flex flex-row align-items-center justify-content-between px-2 w-100">
+            <div className="d-flex flex-row align-items-center">
+                <img src={item.avatar_url} alt="ower_img" className="repo-icon" />
+                <div className="d-flex flex-column align-self-start mt-3">
+                    <div className="d-flex flex-row align-items-center">
+                        <p className="repo-name">{item.name}</p>
+                        <div className="tag">
+                            <p
+                                className="tag-text"
+                            >{item.language}</p>
+                        </div>
                     </div>
+                    <p className="repo-description">{item.description}</p>
                 </div>
-                <p className="repo-description">{item.description}</p>
             </div>
             <button
                 onClick={handleGoToDetails}

@@ -7,6 +7,7 @@ export interface IRepoDetail {
     created_at: string
     forks_count: number
     full_name: string
+    language: string
     name: string
     owner: string
     owner_page: string
