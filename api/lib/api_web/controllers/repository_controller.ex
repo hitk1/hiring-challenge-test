@@ -4,9 +4,11 @@ defmodule ApiWeb.RepositoryController do
   alias Api.Repositories.Services.GetRepos
   alias Api.Repositories.Services.GetSingleRepo
 
-  action_fallback ApiWeb.FallbackController
+  action_fallback(ApiWeb.FallbackController)
 
   def get_repos(conn, _params) do
+    IO.inspect(System.get_env("DB_HOST"))
+
     with {:ok, data} <- GetRepos.call() do
       conn
       |> put_status(:ok)

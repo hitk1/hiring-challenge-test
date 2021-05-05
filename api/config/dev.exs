@@ -2,10 +2,11 @@ use Mix.Config
 
 # Configure your database
 config :api, Api.Repo,
-  username: "postgres",
-  password: "rpi1234",
-  database: "hiring_challenge",
-  hostname: "172.29.76.26",
+  # username: "postgres",
+  # password: "rpi1234",
+  # database: "hiring_challenge",
+  # hostname: "172.29.76.26",
+  url: System.get_env("DATABASE_URL") |> String.replace("?", "dev")
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

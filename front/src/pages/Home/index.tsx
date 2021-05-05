@@ -21,6 +21,7 @@ const Home: React.FC = () => {
             }
         }
 
+        console.log({ ...api })
         fetchData()
     }, [data])
 
