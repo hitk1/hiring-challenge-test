@@ -8,9 +8,11 @@ import './styles.css'
 
 const Home: React.FC = () => {
     const [data, setData] = useState<IRepo[]>([])
+    const [enableButton, setEnableButton] = useState(true)
 
     const handleFetchData = useCallback(() => {
         const fetchData = async () => {
+            setEnableButton(false)
             const result = await api.get('/repos')
 
             if (result.data) {
@@ -19,6 +21,7 @@ const Home: React.FC = () => {
                 console.log(data)
                 setData(data)
             }
+            setEnableButton(true)
         }
 
         fetchData()
@@ -39,7 +42,7 @@ const Home: React.FC = () => {
             </div>
             <button
                 onClick={handleFetchData}
-                className={`fetch-button mt-3 ${data.length > 0 ? 'disable' : ''}`}
+                className={`fetch-button mt-3 ${data.length > 0 || !enableButton ? 'disable' : ''}`}
             >
                 Fetch Data
             </button>
