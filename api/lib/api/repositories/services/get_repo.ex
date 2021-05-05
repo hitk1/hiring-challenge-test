@@ -13,36 +13,44 @@ defmodule Api.Repositories.Services.GetRepos do
           }
 
     defstruct repos: [
-                "/facebook/react-native"
-                # "/facebook/react",
-                # "/Automattic/mongoose",
-                # "/prisma/prisma",
-                # "/Nozbe/WatermelonDB"
+                "/facebook/react-native",
+                "/facebook/react",
+                "/Automattic/mongoose",
+                "/prisma/prisma",
+                "/Nozbe/WatermelonDB"
               ]
   end
 
   def call do
     %{repos: repos} = %State{}
 
-    tasks =
-      repos
-      |> Enum.map(fn item ->
-        Task.async(fn ->
-          with {:ok, data} <- RequestRepo.call(item),
-               {:ok, _} <- CreateRepo.call(data) do
-            Logger.info("Repo created successfully!")
-          else
-            {:error, reason} -> Logger.info(reason)
-          end
-        end)
-      end)
+    existing_data = repo_from_db
 
-    Enum.map(tasks, &Task.await/1)
+    case existing_data do
+      {:error, _} ->
+        tasks =
+          repos
+          |> Enum.map(fn item ->
+            Task.async(fn ->
+              with {:ok, data} <- RequestRepo.call(item),
+                   {:ok, _} <- CreateRepo.call(data) do
+                Logger.info("Repo created successfully!")
+              else
+                {:error, reason} -> Logger.info(reason)
+              end
+            end)
+          end)
 
-    with {:ok, data} <- repo_from_db() do
-      {:ok, data}
-    else
-      {:error, reason} -> {:error, reason}
+        Enum.map(tasks, &Task.await/1)
+
+        with {:ok, data} <- repo_from_db() do
+          {:ok, data}
+        else
+          {:error, reason} -> {:error, reason}
+        end
+
+      {:ok, data} ->
+        {:ok, data}
     end
   end
 
